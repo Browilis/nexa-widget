@@ -27,6 +27,7 @@
     color:         scriptEl.getAttribute('data-color') || '#f4621f',
     delay:         parseInt(scriptEl.getAttribute('data-delay') || '0', 10),
     position:      scriptEl.getAttribute('data-position') || 'right',
+    greeting:      scriptEl.getAttribute('data-greeting') || '',
   };
 
   if (!CFG.webhook) {
@@ -395,7 +396,7 @@
 
   // ── Greeting ─────────────────────────────────────────────────────
   function greet() {
-    const text = `Hey there! 👋 I can help you book a **free estimate** with ${CFG.contractorName}. What's going on with your system today?`;
+    const text = CFG.greeting || `Hey there! 👋 I can help you book a **free estimate** with ${CFG.contractorName}. What's going on with your system today?`;
     addBot(text);
     history.push({ role: 'assistant', content: text });
     sendBtn.disabled = false;
